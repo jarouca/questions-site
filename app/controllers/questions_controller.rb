@@ -11,6 +11,7 @@ class QuestionsController < ApplicationController
 
   def new
     @question = Question.new
+    @page_title = "New Question"
   end
 
   def create
@@ -22,6 +23,15 @@ class QuestionsController < ApplicationController
     else
       render action: 'new'
     end
+  end
+
+  def edit
+    @question = Question.find(params["id"])
+    @page_title = "Edit Question"
+    render 'new'
+  end
+
+  def update
   end
 
   private
