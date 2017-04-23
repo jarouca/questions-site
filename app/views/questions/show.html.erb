@@ -37,3 +37,14 @@
     <%= f.submit 'Submit Answer', class: 'btn btn-primary' %>
   </div>
 <% end %>
+
+<p>
+  <strong>Answers:</strong>
+    <ul>
+      <% @answers.each do |answer| %>
+        <li><%= answer.body %></li>
+      <% end %>
+    </ul>
+</p>
+
+<%= link_to "Edit Question", edit_question_path(@question)%>

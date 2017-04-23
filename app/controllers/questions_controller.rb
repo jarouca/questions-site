@@ -6,6 +6,7 @@ class QuestionsController < ApplicationController
   def show
     @question = Question.find(params[:id])
     @answer = Answer.new
+    @answers = Answer.where(question_id: @question).find_each
   end
 
   def new
