@@ -15,13 +15,13 @@ class QuestionsController < ApplicationController
   end
 
   def create
-    @question = Question.new(title: params["question"]["title"], description: params["question"]["description"], user_id: "1".to_i)
+    @question = Question.create(title: params["question"]["title"], description: params["question"]["description"], user_id: "1".to_i)
     # @question = Question.new(question_params)
     if @question.save
       flash[:notice] = 'Question posted successfully'
       redirect_to @question
     else
-      render action: 'new'
+      render 'new'
     end
   end
 
@@ -32,6 +32,18 @@ class QuestionsController < ApplicationController
   end
 
   def update
+    @question = Question.find(params["id"])
+    @question.update(title: params["question"]["title"], description: params["question"]["description"], user_id: "1".to_i)
+    # @question.update(question_params)
+
+    if @question.save
+      flash[:notice] = 'Question edited successfully'
+      redirect_to @question
+    else
+      render 'new'
+    end
+
+
   end
 
   private
