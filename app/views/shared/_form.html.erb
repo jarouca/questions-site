@@ -1,4 +1,4 @@
-<%= form_for(question) do |f| %>
+<%= form_for (question) do |f| %>
 
   <% if @question.errors.any? %>
     <div id="error_explanation">
@@ -24,7 +24,4 @@
   <div class="actions">
     <%= f.submit %>
   </div>
-
-  <div> @button </div>
-
 <% end %>

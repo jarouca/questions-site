@@ -1,0 +1,5 @@
+<h1>Edit Question</h1>
+
+<%= render 'shared/form', question: @question %>
+
+<div><%= button_to "Delete Question", {controller: "questions", action: "destroy"}, :method => "delete" %></div>

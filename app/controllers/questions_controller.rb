@@ -27,8 +27,7 @@ class QuestionsController < ApplicationController
 
   def edit
     @question = Question.find(params["id"])
-    @page_title = "Edit Question"
-    render 'new'
+    render 'edit'
   end
 
   def update
@@ -47,10 +46,11 @@ class QuestionsController < ApplicationController
   def destroy
     question = Question.find(params["id"])
 
+    Answer.where(question_id: question).destroy_all
+
     if question.destroy
       redirect_to "/questions"
-    end 
-
+    end
   end
 
   private
