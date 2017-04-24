@@ -42,7 +42,14 @@ class QuestionsController < ApplicationController
     else
       render 'new'
     end
+  end
 
+  def destroy
+    question = Question.find(params["id"])
+
+    if question.destroy
+      redirect_to "/questions"
+    end 
 
   end
 

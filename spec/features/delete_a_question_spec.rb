@@ -20,7 +20,7 @@ feature "user deletes a question" do
     click_link "Edit Question"
     click_button "Delete Question"
 
-    expect(page).to not_have_content("Why is the sky blue?")
+    page.should_not have_content("Why is the sky blue?")
   end
 
   scenario "deletes a question from the question details page" do
@@ -32,6 +32,6 @@ feature "user deletes a question" do
     visit "/questions/#{first_question.id}"
     click_button "Delete Question"
 
-    expect(page).to not_have_content("Why is the sky blue?")
+    page.should_not have_content("Why is the sky blue?")
   end
 end
