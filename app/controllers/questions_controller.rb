@@ -11,11 +11,10 @@ class QuestionsController < ApplicationController
 
   def new
     @question = Question.new
-    @page_title = "New Question"
   end
 
   def create
-    @question = Question.create(title: params["question"]["title"], description: params["question"]["description"], user_id: "1".to_i)
+    @question = Question.create(title: params["question"]["title"], description: params["question"]["description"], markdown: params["question"]["markdown"], user_id: "1".to_i)
     # @question = Question.new(question_params)
     if @question.save
       flash[:notice] = 'Question posted successfully'
@@ -32,7 +31,7 @@ class QuestionsController < ApplicationController
 
   def update
     @question = Question.find(params["id"])
-    @question.update(title: params["question"]["title"], description: params["question"]["description"], user_id: "1".to_i)
+    @question.update(title: params["question"]["title"], description: params["question"]["description"], markdown: params["question"]["markdown"], user_id: "1".to_i)
     # @question.update(question_params)
 
     if @question.save

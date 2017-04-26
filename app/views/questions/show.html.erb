@@ -12,6 +12,12 @@
   <%= @question.description %>
 </p>
 
+<% if @question.markdown %>
+  <p>
+    <%= markdown(@question.markdown) %>
+  </p>
+<% end %>
+
 <%= form_for [@question, @answer] do |f| %>
 
   <% if @answer.errors.any? %>
@@ -33,6 +39,13 @@
     </div>
   </div>
 
+  <div class="control-group">
+    <%= f.label :markdown %>
+    <div class="controls">
+      <%= f.text_field :markdown %>
+    </div>
+  </div>
+
   <div class="form-actions">
     <%= f.submit 'Submit Answer', class: 'btn btn-primary' %>
   </div>
@@ -43,6 +56,9 @@
     <ul>
       <% @answers.each do |answer| %>
         <li><%= answer.body %></li>
+          <% if answer.markdown %>
+            <li><%= markdown(answer.markdown) %></li>
+          <% end %>
       <% end %>
     </ul>
 </p>

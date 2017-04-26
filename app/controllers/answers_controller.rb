@@ -9,12 +9,11 @@ class AnswersController < ApplicationController
     @question = Question.find(params[:question_id])
     @answers = Answer.where(question_id: @question).find_each
     @answer = Answer.create(body: params["answer"]["body"], question: @question, user_id: "1".to_i)
-    
+
     if @answer.save
       flash[:notice] = 'Answer submitted'
       redirect_to question_path(@question)
     else
-      @params["id"] = @question.id
       render 'questions/show'
     end
   end
