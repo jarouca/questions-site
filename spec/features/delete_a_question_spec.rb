@@ -18,7 +18,7 @@ feature "user deletes a question" do
 
     visit "/questions/#{first_question.id}"
     click_link "Edit Question"
-    click_button "Delete Question"
+    click_link "Delete Question"
 
     page.should_not have_content("Why is the sky blue?")
   end
@@ -30,7 +30,7 @@ feature "user deletes a question" do
     second_answer = Answer.create(body: 'secondnanswerqwertyuiopqwertyuiopqwertyuiopqwertyuiopqwertyuiop', question_id: first_question.id, user_id: first_user.id)
 
     visit "/questions/#{first_question.id}"
-    click_button "Delete Question"
+    click_link "Delete Question"
 
     page.should_not have_content("Why is the sky blue?")
   end

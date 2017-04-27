@@ -49,7 +49,7 @@ class QuestionsController < ApplicationController
     Answer.where(question_id: question).destroy_all
 
     if question.destroy
-      redirect_to "/questions"
+      redirect_to questions_path
     end
   end
 
