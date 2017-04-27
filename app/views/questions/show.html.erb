@@ -55,10 +55,15 @@
   <strong>Answers:</strong>
     <ul>
       <% @answers.each do |answer| %>
-        <li><%= answer.body %></li>
-          <% if answer.markdown %>
-            <li><%= markdown(answer.markdown) %></li>
-          <% end %>
+        <li>
+          <%= answer.body %>
+            <div>
+              <%= link_to "Mark as best answer", edit_question_answer_path(@question, answer), class: "button", id: answer.id %>
+            </div>
+        </li>
+        <% if answer.markdown %>
+          <li><%= markdown(answer.markdown) %></li>
+        <% end %>
       <% end %>
     </ul>
 </p>

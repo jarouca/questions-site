@@ -1,9 +1,20 @@
 class AnswersController < ApplicationController
-  def index
+  def edit
+    if Answer.find_by best_answer: true
+      old_answer = Answer.find_by best_answer: true
+      old_answer.toggle!(:best_answer)
+    end
+
+    new_answer = Answer.find(params["id"])
+    new_answer.toggle!(:best_answer)
+
+    @answers = Answer.order("best_answer DESC")
+    @question = Question.find(params[:question_id])
+    @answer = Answer.new
+
+    render 'questions/show'
   end
 
-  def new
-  end
 
   def create
     @question = Question.find(params[:question_id])
