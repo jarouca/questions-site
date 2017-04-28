@@ -18,6 +18,6 @@ feature "user marks an answer as best answer" do
 
     visit "/questions"
     click_link "Why is the sky blue?"
-    find_by_id("1").click
+    find("li[id='1']").click_link('Mark as best answer')
   end
 end
