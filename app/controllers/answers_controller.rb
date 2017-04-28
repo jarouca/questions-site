@@ -8,6 +8,7 @@ class AnswersController < ApplicationController
   def create
     @question = Question.find(params[:question_id])
     @answers = Answer.where(question_id: @question).find_each
+
     @answer = Answer.create(body: params["answer"]["body"], markdown: params["answer"]["markdown"], question: @question, user_id: "1".to_i)
 
     if @answer.save
