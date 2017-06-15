@@ -12,24 +12,23 @@ feature "markdown support for questions and answers" do
   # markdown
   scenario "user submits a question in markdown" do
     visit "/questions/new"
-    fill_in('Title', :with => 'qwertyuiopqwertyuiopqwertyuiopqwertyuiopqwertyuiop')
-    fill_in('Markdown', :with => %Q{### The purpose of this question is to find out how you are and to have minimum of 50 characters})
-    click_button("Create Question")
+    fill_in 'Title', with: 'qwertyuiopqwertyuiopqwertyuiopqwertyuiopqwertyuiop'
+    fill_in 'Markdown', with: %Q{### The purpose of this question is to find out how you are and to have minimum of 50 characters}
+    click_button "Create Question"
 
+    page.html.should include("<h3>The purpose of this question is to find out how you are and to have minimum of 50 characters</h3>")
     expect(page).to have_content("Question posted successfully")
-    expect(page).to have_content("The purpose of this question is to find out how you are and to have minimum of 50 characters")
   end
 
   scenario "user submits an answer in markdown" do
-    first_user = User.create(provider: "github", uid: "3", username: "Yaz")
-    first_question = Question.create(title: "Why is the sky blue?", description: "Why is the sky blue? Why isn't it orange or green?", user_id: first_user.id)
+    first_question = Question.create(title: "Why is the sky blue?", description: "Why is the sky blue? Why isn't it orange or green?", user_id: 1)
 
     visit "/questions"
     click_link "Why is the sky blue?"
-    fill_in('Markdown', :with => %Q{### qwertyuiopqwertyuiopqwertyuiopqwertyuiopqwertyuiop})
-    click_button('Submit Answer')
+    fill_in 'Markdown', with: %Q{### qwertyuiopqwertyuiopqwertyuiopqwertyuiopqwertyuiop}
+    click_button 'Submit Answer'
 
     expect(page).to have_content("Answer submitted")
-    expect(page).to have_content("qwertyuiopqwertyuiopqwertyuiopqwertyuiopqwertyuiop")
+    page.html.should include("<h3>qwertyuiopqwertyuiopqwertyuiopqwertyuiopqwertyuiop</h3>")
   end
 end

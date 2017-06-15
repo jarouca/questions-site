@@ -2,31 +2,37 @@
 
   <% if @question.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@question.errors.count, "error") %> prohibited this article from being saved:</h2>
-      <ul>
+      <h2 class="notice"><%= pluralize(@question.errors.count, "error") %> prohibited this article from being saved:</h2>
+      <ul class="notice-list">
       <% @question.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
+        <li class="notice"><%= msg %></li>
       <% end %>
       </ul>
     </div>
   <% end %>
 
   <div class="field">
-    <%= f.label :title %><br />
-    <%= f.text_field :title %>
+    <div class="control-group">
+      <%= f.label :title %><br />
+      <%= f.text_field :title %>
+    </div>
   </div>
 
   <div class="field">
-    <%= f.label :description %><br />
-    <%= f.text_field :description %>
+    <div class="control-group">
+      <%= f.label :description %><br />
+      <%= f.text_area :description %>
+    </div>
   </div>
 
   <div class="field">
-    <%= f.label :markdown %><br />
-    <%= f.text_field :markdown %>
+    <div class="control-group">
+      <%= f.label :markdown %><br />
+      <%= f.text_field :markdown %>
+    </div>
   </div>
 
-  <div class="actions">
+  <div class="form-actions">
     <%= f.submit %>
   </div>
 <% end %>

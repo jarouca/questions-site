@@ -1,73 +1,90 @@
-<% if flash[:notice] %>
-  <div class="notice"><%= flash[:notice] %></div>
-<% end %>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>QuestionSite</title>
+    <%= csrf_meta_tags %>
 
-<p>
-  <strong>Title:</strong>
-  <%= @question.title %>
-</p>
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
+  </head>
 
-<p>
-  <strong>Description:</strong>
-  <%= @question.description %>
-</p>
-
-<% if @question.markdown %>
-  <p>
-    <%= markdown(@question.markdown) %>
-  </p>
-<% end %>
-
-<%= form_for [@question, @answer] do |f| %>
-
-  <% if @answer.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@answer.errors.count, "error") %> prohibited this article from being saved:</h2>
-
-      <ul>
-      <% @answer.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
+  <body>
+    <div class="main-back">
+    <div class="main">
+      <% if flash[:notice] %>
+        <div class="notice"><%= flash[:notice] %></div>
       <% end %>
-      </ul>
-    </div>
-  <% end %>
 
-  <div class="control-group">
-    <%= f.label :body %>
-    <div class="controls">
-      <%= f.text_field :body %>
-    </div>
-  </div>
+      <p class="form-title">
+        <strong>Title:</strong>
+        <%= @question.title %>
+      </p>
 
-  <div class="control-group">
-    <%= f.label :markdown %>
-    <div class="controls">
-      <%= f.text_field :markdown %>
-    </div>
-  </div>
+      <p class="form-description">
+        <strong>Description:</strong>
+        <%= @question.description %>
+      </p>
 
-  <div class="form-actions">
-    <%= f.submit 'Submit Answer', class: 'btn btn-primary' %>
-  </div>
-<% end %>
+      <% if @question.markdown %>
+        <p class="form-description">
+          <%= markdown(@question.markdown) %>
+        </p>
+      <% end %>
+      <div class="question-link"><%= link_to "Edit Question", edit_question_path(@question) %></div>
 
-<p>
-  <strong>Answers:</strong>
-    <ul>
-      <% @answers.each do |answer| %>
-        <li id=<%= answer.id %> >
-          <%= answer.body %>
-            <div>
-              <%= link_to "Mark as best answer", edit_question_answer_path(@question, answer), class: "button" %>
-            </div>
-        </li>
-        <% if answer.markdown %>
-          <li><%= markdown(answer.markdown) %></li>
+      <div class="question-link"><%= link_to "Delete Question", question_path(@question), method: :delete %></div>
+
+      <p class="answers-title">Answer this question:</p>
+
+      <%= form_for [@question, @answer] do |f| %>
+
+        <% if @answer.errors.any? %>
+          <div id="error_explanation">
+            <h2 class="notice"><%= pluralize(@answer.errors.count, "error") %> prohibited this article from being saved:</h2>
+
+            <ul class="notice-list">
+            <% @answer.errors.full_messages.each do |msg| %>
+              <li class="notice"><%= msg %></li>
+            <% end %>
+            </ul>
+          </div>
         <% end %>
+
+        <div class="control-group">
+          <%= f.label :body %>
+          <div class="controls">
+            <%= f.text_area :body %>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <%= f.label :markdown %>
+          <div class="controls">
+            <%= f.text_area :markdown %>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <%= f.submit 'Submit Answer', class: 'btn btn-primary' %>
+        </div>
       <% end %>
-    </ul>
-</p>
 
-<div><%= link_to "Edit Question", edit_question_path(@question) %></div>
+        <p class="answers-title"><strong>Answers:</strong></p>
+          <ul class="answers-list">
+            <% @answers.each do |answer| %>
+              <li class="form-description" >
+                <%= answer.body %>
+                  <div>
+                    <%= link_to "Mark as best answer", edit_question_answer_path(@question, answer), class: "button" %>
+                  </div>
+              </li>
+              <% if answer.markdown %>
+                <li class="form-description"><%= markdown(answer.markdown) %></li>
+              <% end %>
+            <% end %>
+          </ul>
 
-<div><%= link_to "Delete Question", question_path(@question), method: :delete %></div>
+    </div>
+  </div>
+  </body>
+</html>

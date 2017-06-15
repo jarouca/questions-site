@@ -11,10 +11,9 @@ require "rails_helper"
   # - I will be directed to the root after deleting
 feature "user deletes a question" do
   scenario "deletes a question from the question edit page" do
-    first_user = User.create(provider: "github", uid: "3", username: "Yaz")
-    first_question = Question.create(title: "Why is the sky blue?", description: "Why is the sky blue? Why isn't it orange or green?", user_id: first_user.id)
-    first_answer = Answer.create(body: 'firstanswerqwertyuiopqwertyuiopqwertyuiopqwertyuiopqwertyuiop', question_id: first_question.id, user_id: first_user.id)
-    second_answer = Answer.create(body: 'secondnanswerqwertyuiopqwertyuiopqwertyuiopqwertyuiopqwertyuiop', question_id: first_question.id, user_id: first_user.id)
+    first_question = Question.create(title: "Why is the sky blue?", description: "Why is the sky blue? Why isn't it orange or green?", user_id: 1)
+    first_answer = Answer.create(body: 'firstanswerqwertyuiopqwertyuiopqwertyuiopqwertyuiopqwertyuiop', question_id: first_question.id, user_id: 1)
+    second_answer = Answer.create(body: 'secondnanswerqwertyuiopqwertyuiopqwertyuiopqwertyuiopqwertyuiop', question_id: first_question.id, user_id: 1)
 
     visit "/questions/#{first_question.id}"
     click_link "Edit Question"
@@ -24,10 +23,9 @@ feature "user deletes a question" do
   end
 
   scenario "deletes a question from the question details page" do
-    first_user = User.create(provider: "github", uid: "3", username: "Yaz")
-    first_question = Question.create(title: "Why is the sky blue?", description: "Why is the sky blue? Why isn't it orange or green?", user_id: first_user.id)
-    first_answer = Answer.create(body: 'firstanswerqwertyuiopqwertyuiopqwertyuiopqwertyuiopqwertyuiop', question_id: first_question.id, user_id: first_user.id)
-    second_answer = Answer.create(body: 'secondnanswerqwertyuiopqwertyuiopqwertyuiopqwertyuiopqwertyuiop', question_id: first_question.id, user_id: first_user.id)
+    first_question = Question.create(title: "Why is the sky blue?", description: "Why is the sky blue? Why isn't it orange or green?", user_id: 1)
+    first_answer = Answer.create(body: 'firstanswerqwertyuiopqwertyuiopqwertyuiopqwertyuiopqwertyuiop', question_id: first_question.id, user_id: 1)
+    second_answer = Answer.create(body: 'secondnanswerqwertyuiopqwertyuiopqwertyuiopqwertyuiopqwertyuiop', question_id: first_question.id, user_id: 1)
 
     visit "/questions/#{first_question.id}"
     click_link "Delete Question"

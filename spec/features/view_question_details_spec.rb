@@ -11,8 +11,7 @@ feature "user views a question's details" do
     # - I must see the question's title
     # - I must see the question's description
   scenario "user views details" do
-    first_user = User.create(provider: "github", uid: "3", username: "Yaz")
-    first_question = Question.create(title: "Why is the sky blue?", description: "Why is the sky blue? Why isn't it orange or green?", user_id: first_user.id)
+    first_question = Question.create(title: "Why is the sky blue?", description: "Why is the sky blue? Why isn't it orange or green?", user_id: 1)
 
     visit "/questions"
     click_link "Why is the sky blue?"
