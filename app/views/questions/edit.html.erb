@@ -1,23 +1,6 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>QuestionSite</title>
-    <%= csrf_meta_tags %>
+<h2 class="new-question-title">Edit Question</h2>
+<%= render 'shared/form', question: @question %>
 
-    <%= stylesheet_link_tag    'application', media: 'all' %>
-    <%= javascript_include_tag 'application' %>
-  </head>
-
-  <body>
-    <div class="main-back">
-    <div class="main">
-      <h2 class="new-question-title">Edit Question</h2>
-      <%= render 'shared/form', question: @question %>
-
-      <div class="question-link">
-        <%= link_to "Delete Question", question_path(@question), method: :delete %>
-      </div>
-    </div>
-  </div>
-  </body>
-</html>
+<div class="question-link">
+  <%= link_to "Delete Question", question_path(@question), method: :delete %>
+</div>
