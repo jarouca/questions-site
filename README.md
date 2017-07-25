@@ -15,10 +15,24 @@ To install, please run the following in your terminal:
 ### Set up Rails
 
 ```
-git clone 
+git clone https://github.com/jarouca/questions-site.git
 cd rescue-mission
 cd rescue-mission
 bundle install
 rake db:create
 rake db:migrate
 ```
+
+## Running the application
+
+To run questions-site, please run the following command in your terminal from the rescue-mission directory:
+
+`rails s`
+
+Now open your browser and enter localhost:3000 in your address bar.
+
+## Testing
+
+To run the test suite, please enter the following command from the rescue-mission root directory:
+
+`rspec`
