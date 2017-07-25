@@ -1,24 +1,3 @@
-# README
+# Questions Site
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+A Rails app highlighting CRUD functionality and the use of nested resources by allowing users to submit and answer questions. Features include CRUD functionality for question and answer models, markdown support for users who wish to submit answers or questions in markdown, and a "best" option for users to mark an answer as "best answer".
